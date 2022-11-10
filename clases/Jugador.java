@@ -1,11 +1,12 @@
 package clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import interfaces.iJuego;
 import interfaces.iRegistro;
 
-public class Jugador implements interfaces.iJugador {
+public class Jugador implements interfaces.iJugador, Serializable {
     private String nickname;
     private String password;
     private ArrayList<iRegistro> registros;

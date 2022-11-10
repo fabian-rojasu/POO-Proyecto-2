@@ -11,6 +11,8 @@
 //import java.util.ArrayList;
 //import juego1.MultiMath;
 //import juego2.Gato;
+import java.util.ArrayList;
+
 import interfaces.iJuego;
 //import interfaces.iRegistro;
 import interfaces.iJugador;
@@ -19,13 +21,15 @@ public class GuiGameCenter extends javax.swing.JFrame {
     String[] personal = {"fuap", "Item 2", "Item 3", "Item 4" };
     String[] persona = {"fuap"};
     static iJugador jugador;
+    static ArrayList<iJugador> jugadores;
     CentroJuego center;
     
     /**
      * Creates new form GuiGameCenter
      */
-    public GuiGameCenter(iJugador j) {
+    public GuiGameCenter(iJugador j,ArrayList<iJugador> js) {
         jugador = j;
+        jugadores = js;
         center = new CentroJuego(jugador);
         initComponents();
     }
@@ -474,7 +478,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiGameCenter(jugador).setVisible(true);
+                new GuiGameCenter(jugador,jugadores).setVisible(true);
             }
         });
     }
