@@ -83,6 +83,7 @@ public class Login extends JFrame implements ActionListener {
         btn_salir.setBounds(450, 500, 75, 25);
         this.add(btn_salir);
         btn_salir.addActionListener(this);
+
     }
 
     /**
@@ -113,8 +114,9 @@ public class Login extends JFrame implements ActionListener {
                     if(Jugador.getNombre().equals(txt_nickname.getText())){
                         if(Jugador.getPassword().equals(txt_password.getText())){
                             iJugador player = Jugador;
-                            JFrame ventanaGameCenter = new CentroJuego(player);
+                            JFrame ventanaGameCenter = new GuiGameCenter(player);
                             ventanaGameCenter.setVisible(true);
+                            this.dispose();
                         }else{
                             JOptionPane.showMessageDialog(null,"Usuario o Contraseña incorrecta");
                         }   
