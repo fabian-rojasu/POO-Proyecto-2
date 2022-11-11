@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+
 public class GUI_MultiMath extends JFrame implements ActionListener{
 
     static int puntaje = 0;
@@ -20,12 +21,14 @@ public class GUI_MultiMath extends JFrame implements ActionListener{
     static JTextField operacion;
     static JTextField res;
     static JLabel score;
+    
 
     public GUI_MultiMath(){
+        puntaje = 0;
         this.setSize(500,500);
         this.setLayout(null);
         this.setTitle("MultiMath");
-        //this.setUndecorated(true);  
+        this.setUndecorated(true);  
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setVisible(true);
 
@@ -93,6 +96,9 @@ public class GUI_MultiMath extends JFrame implements ActionListener{
             respuesta= res.getText();
             if(respuesta.equals(resultado)== false){
                 JOptionPane.showMessageDialog(null,"Perdiste");
+                MultiMath mm = new MultiMath();
+                mm.crearRegistro(puntaje,mm);
+                mm.terminarPartida();
                 this.dispose();
             }else{
                 puntaje++;
@@ -102,6 +108,7 @@ public class GUI_MultiMath extends JFrame implements ActionListener{
         }
         else{
             if(e.getSource() ==btnSalir){
+                
                 this.dispose();
             }      
         }      

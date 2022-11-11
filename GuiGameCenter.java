@@ -12,10 +12,14 @@
 //import juego1.MultiMath;
 //import juego2.Gato;
 import java.util.ArrayList;
-
 import interfaces.iJuego;
 //import interfaces.iRegistro;
 import interfaces.iJugador;
+
+
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 public class GuiGameCenter extends javax.swing.JFrame {
     int cont = 0;
     String[] personal = {"fuap", "Item 2", "Item 3", "Item 4" };
@@ -30,6 +34,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
     public GuiGameCenter(iJugador j,ArrayList<iJugador> js) {
         jugador = j;
         jugadores = js;
+        
         center = new CentroJuego(jugador);
         initComponents();
     }
@@ -61,6 +66,8 @@ public class GuiGameCenter extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        
 
         jPanel1.setBackground(new java.awt.Color(28, 28, 28));
 
@@ -381,7 +388,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
        if (cont == 1) {
           
             iJuego MM = center.getJuegosDisponibles().get(0);
-            MM.iniciarPartida(jugador);
+            MM.iniciarPartida(jugador);        
        }
        if (cont == 2) {
 
@@ -447,6 +454,10 @@ public class GuiGameCenter extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+  
+
+    
 
     /**
      * @param args the command line arguments
