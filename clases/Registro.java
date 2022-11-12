@@ -1,41 +1,54 @@
 package clases;
-import interfaces.iJuego;
 import java.time.LocalDateTime;
 
+import interfaces.iJuego;
 import interfaces.iJugador;
+import java.io.Serializable;
 
-public class Registro implements interfaces.iRegistro{
+public class Registro implements interfaces.iRegistro, Serializable{
     
-    iJuego juego;
+    private LocalDateTime horaInicio;
+    private LocalDateTime horaFinal;
+    private int puntaje;
+    private boolean estado;
+    private iJugador jugador;
+    public iJuego juego;
+
     
 
-    public Registro(){
-        
+    public Registro(int puntaje){
+        this.puntaje=puntaje;
     }
+
+    public Registro(LocalDateTime horaInicio, LocalDateTime Horafinal, int puntaje, boolean estado, iJugador jugador, iJuego juego){
+        this.horaInicio=horaInicio;
+        this.horaFinal=Horafinal;
+        this.puntaje=puntaje;
+        this.estado=estado;
+        this.jugador=jugador;
+        this.juego=juego;
+    }
+
     @Override
     public LocalDateTime getInicio() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.horaInicio;
     }
     @Override
     public LocalDateTime getFinalizacion() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.horaFinal;
     }
     @Override
     public void setInicio(LocalDateTime fechaHora) {
-        // TODO Auto-generated method stub
-        
+        this.horaInicio=fechaHora;
     }
     @Override
     public void setFinalizacion(LocalDateTime fechaHora) {
-        // TODO Auto-generated method stub
-        
+        this.horaFinal=fechaHora;    
     }
+
     @Override
     public int getPuntaje() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.puntaje;
     }
     @Override
     public int getSegundosTotalesPartida() {
@@ -44,15 +57,25 @@ public class Registro implements interfaces.iRegistro{
     }
     @Override
     public boolean getEstadoFinalizado() {
-        // TODO Auto-generated method stub
-        return false;
+        return this.estado;
     }
     @Override
     public iJugador getJugador() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.jugador;
     }
     public iJuego getJuego() {
         return juego;
     }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+    public void setJuego(iJuego juego) {
+        this.juego = juego;
+    }
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    
 }

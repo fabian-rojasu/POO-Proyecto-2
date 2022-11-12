@@ -9,17 +9,18 @@ import interfaces.iRegistro;
 public class Jugador implements interfaces.iJugador, Serializable {
     private String nickname;
     private String password;
-    private ArrayList<iRegistro> registros;
+    private ArrayList<Registro> registros;
+   
 
     public Jugador(String nickname, String password){
         this.nickname=nickname;
         this.password=password;
-        this.registros=new ArrayList<iRegistro>();
+        this.registros=new ArrayList<Registro>();
+
     }
 
     @Override
     public String getNombre() {
-        // TODO Auto-generated method stub
         return nickname;
     }
     public String getPassword() {
@@ -27,15 +28,31 @@ public class Jugador implements interfaces.iJugador, Serializable {
     }
     @Override
     public void registrarPuntaje(int puntuacion, iJuego juego) {
-        // TODO Auto-generated method stub
+
+ 
     }
     @Override
     public ArrayList<iRegistro> estadisticas(iJuego tipoJuego) {
-        // TODO Auto-generated method stub
-        return null;
+        ArrayList<iRegistro> iRegistrosJuego= new ArrayList<>();
+        for (Registro registro : registros) {
+            if(registro.getJuego().getNombre().equals(tipoJuego.getNombre()));{
+                iRegistrosJuego.add(registro);
+            }
+        }
+        return iRegistrosJuego;
     }
-    public ArrayList<iRegistro> getRegistros() {
-        return registros;
+
+    public ArrayList<Registro> getEstadisticas(iJuego tipoJuego) {
+        ArrayList<Registro> RegistrosJuego= new ArrayList<>();
+        for (Registro registro : registros) {
+            if(registro.getJuego().getNombre().equals(tipoJuego.getNombre()));{
+                RegistrosJuego.add(registro);
+            }
+        }
+        return RegistrosJuego;
     }
-    
+  
+    public void agregarRegistros(Registro registro){
+        registros.add(registro);
+    }
 }

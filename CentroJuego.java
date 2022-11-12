@@ -10,6 +10,8 @@ import javax.swing.JButton;
 
 import javax.swing.JLabel;
 
+import clases.Registro;
+
 
 
 public class CentroJuego implements interfaces.iCentroJuego
@@ -17,7 +19,7 @@ public class CentroJuego implements interfaces.iCentroJuego
     static iJugador globalJugador;
 
     ArrayList<iJugador> listJugadores;
-    ArrayList<iRegistro> listPuntajesJuego1, listPuntajesJuego2 , listPuntajesJuego3;
+    public static ArrayList<Registro> registros;
 
     JButton btn_prueba;
     JLabel lbl_prueba;
