@@ -7,18 +7,11 @@ import java.awt.EventQueue;
 import java.time.LocalDateTime;
 
 import javax.swing.JFrame;
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
+import java.io.Serializable;
 
 
 
-public class MultiMath implements interfaces.iJuego{
+public class MultiMath implements interfaces.iJuego, Serializable{
     
     public static iJugador jugadorGlobal;
     

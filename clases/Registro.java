@@ -3,8 +3,9 @@ import java.time.LocalDateTime;
 
 import interfaces.iJuego;
 import interfaces.iJugador;
+import java.io.Serializable;
 
-public class Registro implements interfaces.iRegistro{
+public class Registro implements interfaces.iRegistro, Serializable{
     
     private LocalDateTime horaInicio;
     private LocalDateTime horaFinal;

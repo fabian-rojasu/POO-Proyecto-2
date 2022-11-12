@@ -16,9 +16,13 @@ import interfaces.iJuego;
 //import interfaces.iRegistro;
 import interfaces.iJugador;
 
-
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 
 public class GuiGameCenter extends javax.swing.JFrame {
     int cont = 0;
@@ -47,6 +51,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
     //@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        Guardar();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -455,7 +460,30 @@ public class GuiGameCenter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-  
+    private void Guardar(){
+        try {
+            addWindowListener(new java.awt.event.WindowAdapter (){ 
+                public void windowClosing(java.awt.event.WindowEvent event){
+                    cargarDatos();
+                }
+            
+            });
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+    public void cargarDatos(){
+        // Escritura de objetos:
+        try {
+            OutputStream os = new FileOutputStream("personas.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(os);     
+            oos.writeObject(jugadores);
+            oos.close();
+            System.out.println("La escritura se ha completado.");     
+        } catch (IOException ex) {
+            System.err.println("Error -> " + ex.getMessage());
+        }
+    }
 
     
 
