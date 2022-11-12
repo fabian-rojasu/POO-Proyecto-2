@@ -38,7 +38,6 @@ public class GuiGameCenter extends javax.swing.JFrame {
     public GuiGameCenter(iJugador j,ArrayList<iJugador> js) {
         jugador = j;
         jugadores = js;
-        
         center = new CentroJuego(jugador);
         initComponents();
     }
@@ -71,8 +70,6 @@ public class GuiGameCenter extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        
 
         jPanel1.setBackground(new java.awt.Color(28, 28, 28));
 
@@ -231,6 +228,9 @@ public class GuiGameCenter extends javax.swing.JFrame {
                 jComboBox2ActionPerformed(evt);
             }
         });
+        
+        
+        
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setVisible(false);
@@ -346,6 +346,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jPanel4MouseEntered
+
 
     private void jPanel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseExited
         if (cont == 0) {

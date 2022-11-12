@@ -18,6 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
+
 /**
  * Primera ventana donde se realizara el registro o inicio de sesion para poder acceder al Centro de juegos 
  */
@@ -25,7 +26,6 @@ public class Login extends JFrame implements ActionListener {
 
     Font fuente =new Font("Calibri", 3, 16);
     ArrayList<Jugador> jugadores =new ArrayList<>();
-    
     //Declaracion de elementos Graficos
     static JLabel lbl_nickname;
     static JLabel lbl_password;
@@ -162,6 +162,7 @@ public class Login extends JFrame implements ActionListener {
         
     }
 
+    
     public void cargarDatos(){
         // Escritura de objetos:
         try {
