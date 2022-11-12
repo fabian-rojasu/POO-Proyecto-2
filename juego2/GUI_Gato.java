@@ -16,7 +16,7 @@ public class GUI_Gato extends JFrame {
     private JPanel contentPane;
 
 	boolean banderaGanaX=true, banderaGanaO=true;
-	int ganadorX,ganadorO;
+	public static int ganadorX = 0,ganadorO = 0;
 	String resultado="X = "+ganadorX+"        "+"O = "+ganadorO;
 	String juegoNuevo="O";
 	String Turno="X";
@@ -36,7 +36,7 @@ public class GUI_Gato extends JFrame {
 
 	
 	public GUI_Gato() {
-		setTitle("tateti");
+		setTitle("TicTacToe");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 244, 365);
@@ -78,7 +78,7 @@ public class GUI_Gato extends JFrame {
 		panel_1.add(lblX1);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(255, 255, 255));
+		panel_2.setBackground(new Color(255, 255, 255)); 
 		panel_2.setBounds(63, 0, 60, 60);
 		panel.add(panel_2);
 		panel_2.setLayout(null);
@@ -248,6 +248,40 @@ public class GUI_Gato extends JFrame {
 		btnJuegoNuevo.setBackground(SystemColor.textHighlightText);
 		btnJuegoNuevo.setBounds(10, 11, 84, 23);
 		contentPane.add(btnJuegoNuevo);
+
+		JButton btnSalir = new JButton("Acabar");
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+		});
+		
+		btnSalir.setForeground(new Color(255, 255, 255));
+		btnSalir.setSelectedIcon(null);
+		btnSalir.setFont(new Font("Courier New", Font.BOLD, 12));
+		btnSalir.setEnabled(false);
+		btnSalir.setBackground(SystemColor.textHighlightText);
+		btnSalir.setBounds(10, 275, 84, 23);
+		contentPane.add(btnSalir); 
+
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+		});
+		
+		btnCancelar.setForeground(new Color(255, 255, 255));
+		btnCancelar.setSelectedIcon(null);
+		btnCancelar.setFont(new Font("Courier New", Font.BOLD, 12));
+		btnCancelar.setEnabled(false);
+		btnCancelar.setBackground(SystemColor.textHighlightText);
+		btnCancelar.setBounds(130, 275, 90, 23);
+		contentPane.add(btnCancelar);
+
+
 		
 		lbs[0]=lblX1;
 		lbs[1]=lblX2;
@@ -281,6 +315,7 @@ public class GUI_Gato extends JFrame {
         	lblTurno.setText("Turno: "+Turno);
 		}
 	}
+
 	
 	public void ganador(){
 		
@@ -311,5 +346,9 @@ public class GUI_Gato extends JFrame {
 				}
 		}
 		}
+	}
+
+	public void terminar(){
+		
 	}
 }

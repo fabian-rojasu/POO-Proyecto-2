@@ -11,6 +11,11 @@
 //import java.util.ArrayList;
 //import juego1.MultiMath;
 //import juego2.Gato;
+import java.util.ArrayList;
+
+
+import javax.swing.JOptionPane;
+
 import interfaces.iJuego;
 //import interfaces.iRegistro;
 import interfaces.iJugador;
@@ -19,13 +24,15 @@ public class GuiGameCenter extends javax.swing.JFrame {
     String[] personal = {"fuap", "Item 2", "Item 3", "Item 4" };
     String[] persona = {"fuap"};
     static iJugador jugador;
+    static ArrayList<iJugador> jugadores;
     CentroJuego center;
     
     /**
      * Creates new form GuiGameCenter
      */
-    public GuiGameCenter(iJugador j) {
+    public GuiGameCenter(iJugador j,ArrayList<iJugador> js) {
         jugador = j;
+        jugadores = js;
         center = new CentroJuego(jugador);
         initComponents();
     }
@@ -57,7 +64,6 @@ public class GuiGameCenter extends javax.swing.JFrame {
         lblNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(28, 28, 28));
 
         jPanel2.setBackground(new java.awt.Color(80, 32, 108));
@@ -215,6 +221,9 @@ public class GuiGameCenter extends javax.swing.JFrame {
                 jComboBox2ActionPerformed(evt);
             }
         });
+        
+        
+        
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setVisible(false);
@@ -331,6 +340,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jPanel4MouseEntered
 
+
     private void jPanel4MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel4MouseExited
         if (cont == 0) {
             jPanel4.setBorder(javax.swing.BorderFactory.createMatteBorder(4, 4, 4, 4, new java.awt.Color(255,51,51)));
@@ -444,6 +454,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
+
     /**
      * @param args the command line arguments
      */
@@ -474,7 +485,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GuiGameCenter(jugador).setVisible(true);
+                new GuiGameCenter(jugador,jugadores).setVisible(true);
             }
         });
     }
