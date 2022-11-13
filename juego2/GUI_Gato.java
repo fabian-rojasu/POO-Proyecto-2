@@ -253,6 +253,11 @@ public class GUI_Gato extends JFrame {
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				Gato mm = new Gato("Gato", "Tradicional juego donde en un 3x3 se tiene que conseguir acertar tu simbolo en una linea de 3");
+				mm.crearRegistro(ganadorX*10, mm);        
+                mm.terminarPartida();
+				ganadorX = 0;
+				ganadorO = 0;
 				dispose();
 			}
 		});

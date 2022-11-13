@@ -76,6 +76,5 @@ public class Registro implements interfaces.iRegistro, Serializable{
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-
     
 }

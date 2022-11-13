@@ -12,23 +12,30 @@
 //import juego1.MultiMath;
 //import juego2.Gato;
 import java.util.ArrayList;
+
+import java.util.Collections;
+
+import Comparadores.ComparadorRegistros;
+import Comparadores.Comparador;
+import clases.Jugador;
+import clases.Registro;
 import interfaces.iJuego;
 //import interfaces.iRegistro;
 import interfaces.iJugador;
 
-import java.io.FileInputStream;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
+
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
 public class GuiGameCenter extends javax.swing.JFrame {
     int cont = 0;
     String[] personal = {"fuap", "Item 2", "Item 3", "Item 4" };
-    String[] persona = {"fuap"};
+    
     static iJugador jugador;
+    static iJuego MM;
     static ArrayList<iJugador> jugadores;
     CentroJuego center;
     
@@ -236,7 +243,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
         jLabel6.setVisible(false);
         jLabel6.setText("Global");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         jComboBox1.setVisible(false);
         jComboBox1.setEditor(null);
 
@@ -393,12 +400,13 @@ public class GuiGameCenter extends javax.swing.JFrame {
     private void jPanel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel6MouseClicked
        if (cont == 1) {
           
-            iJuego MM = center.getJuegosDisponibles().get(0);
-            MM.iniciarPartida(jugador);        
+            MM = center.getJuegosDisponibles().get(0);
+            MM.iniciarPartida(jugador);  
+
        }
        if (cont == 2) {
 
-            iJuego MM = center.getJuegosDisponibles().get(1);
+            MM = center.getJuegosDisponibles().get(1);
             MM.iniciarPartida(jugador);
         }
         
@@ -418,13 +426,97 @@ public class GuiGameCenter extends javax.swing.JFrame {
         jComboBox1.setVisible(true);
         jLabel5.setVisible(true);
         jComboBox2.setVisible(true);
+        MM = center.getJuegosDisponibles().get(0);
+        PuntajePersonal();
+        PuntajeGolbal();
+        
+        
+        
+        
         
         
         
     }//GEN-LAST:event_jPanel4MouseClicked
 
+    private void PuntajePersonal(){
+        ArrayList<Comparador> listaComparador = new ArrayList<>();
+        Jugador ju = (Jugador) jugador;
+        if(ju.getEstadisticas(MM).size() == 0){
+            jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(personal));
+        }else{
+            int contador=0;
+            while(contador <ju.getEstadisticas(MM).size()){
+                if(MM.getNombre().equals(ju.getEstadisticas(MM).get(contador).getJuego().getNombre()) ){
+                    Comparador comparar = new Comparador(ju.getEstadisticas(MM).get(contador).getPuntaje(), ju.getEstadisticas(MM).get(contador).getFinalizacion());
+                    listaComparador.add(comparar);
+                }
+                contador++; 
+            }
+            Collections.sort(listaComparador);
+            String[] personal = new String[10];
+
+            if(listaComparador.size() < 10){
+                for (int i = 0; i < listaComparador.size(); i++) {
+                    personal[i] = listaComparador.get(i).getPuntaje()+": "+
+                    listaComparador.get(i).getFecha().getDayOfMonth()+"-"+listaComparador.get(i).getFecha().getMonthValue()+"-"+
+                    listaComparador.get(i).getFecha().getYear();
+                } 
+            }else{
+                for (int i = 0; i < 10; i++) {
+                    personal[i] = listaComparador.get(i).getPuntaje()+": "+
+                    listaComparador.get(i).getFecha().getDayOfMonth()+"-"+listaComparador.get(i).getFecha().getMonthValue()+"-"+
+                    listaComparador.get(i).getFecha().getYear();
+                }  
+            }
+            jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(personal));
+        }
+    }
+
+    private void PuntajeGolbal(){
+        ArrayList<Jugador> listaJugadores = new ArrayList<>();
+        ArrayList<Registro> listaRegistros = new ArrayList<>();
+        Jugador cambioJugador;
+        String[] globalStrings = new String[10];
+        for(iJugador juga : jugadores){
+            cambioJugador = (Jugador) juga;
+            listaJugadores.add(cambioJugador);
+        }
+           for (int i = 0; i < listaJugadores.size(); i++) {
+                for (int j = 0; j < listaJugadores.get(i).getEstadisticas(MM).size(); j++) {
+                    if(MM.getNombre().equals(listaJugadores.get(i).getEstadisticas(MM).get(j).getJuego().getNombre()) ){
+
+                        listaRegistros.add(listaJugadores.get(i).getEstadisticas(MM).get(j));
+                    }
+                }
+                
+            } 
+            Collections.sort(listaRegistros, new ComparadorRegistros());
+            
+            if(listaRegistros.size() == 0){
+                jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(globalStrings));
+            }else{
+                if(listaRegistros.size() < 10){
+                    for (int i = 0; i < listaRegistros.size(); i++) {
+                        globalStrings[i] = listaRegistros.get(i).getJugador().getNombre()+": "+listaRegistros.get(i).getPuntaje()+": "+
+                        listaRegistros.get(i).getFinalizacion().getDayOfMonth()+"-"+listaRegistros.get(i).getFinalizacion().getMonthValue()+"-"+
+                        listaRegistros.get(i).getFinalizacion().getYear();
+                    }
+                }else{
+                    for (int i = 0; i < 10; i++) {
+                        globalStrings[i] = listaRegistros.get(i).getJugador().getNombre()+": "+listaRegistros.get(i).getPuntaje()+": "+
+                        listaRegistros.get(i).getFinalizacion().getDayOfMonth()+"-"+listaRegistros.get(i).getFinalizacion().getMonthValue()+"-"+
+                        listaRegistros.get(i).getFinalizacion().getYear();
+                    }  
+                }
+            }
+            
+            jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(globalStrings));
+        }
+    
+
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
         cont=2;
+        MM = center.getJuegosDisponibles().get(1);
         jPanel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel6.setVisible(true);
         jLabel3.setVisible(false);
@@ -437,7 +529,9 @@ public class GuiGameCenter extends javax.swing.JFrame {
         jComboBox1.setVisible(true);
         jLabel5.setVisible(true);
         jComboBox2.setVisible(true);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(personal));
+        PuntajePersonal();
+        PuntajeGolbal();
+        
     }//GEN-LAST:event_jPanel2MouseClicked
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
@@ -454,7 +548,7 @@ public class GuiGameCenter extends javax.swing.JFrame {
         jComboBox1.setVisible(true);
         jLabel5.setVisible(true);
         jComboBox2.setVisible(true);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(persona));
+        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(persona));
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed

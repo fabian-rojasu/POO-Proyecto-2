@@ -54,6 +54,7 @@ public class MultiMath implements interfaces.iJuego, Serializable{
         registroGlobal.setPuntaje(puntaje);
         registroGlobal.setEstado(true);
         registroGlobal.setJuego(juego);
+        
     }
 
     

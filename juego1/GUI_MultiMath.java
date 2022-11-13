@@ -21,7 +21,6 @@ public class GUI_MultiMath extends JFrame implements ActionListener{
     static JTextField operacion;
     static JTextField res;
     static JLabel score;
-    
 
     public GUI_MultiMath(){
         puntaje = 0;
@@ -96,8 +95,8 @@ public class GUI_MultiMath extends JFrame implements ActionListener{
             respuesta= res.getText();
             if(respuesta.equals(resultado)== false){
                 JOptionPane.showMessageDialog(null,"Perdiste");
-                MultiMath mm = new MultiMath();
-                mm.crearRegistro(puntaje,mm);
+                MultiMath mm = new MultiMath("MultiMath","Juego matematico que se basa en responder la mayor cantidad de operaciones posibles");    
+                mm.crearRegistro(puntaje*10, mm);        
                 mm.terminarPartida();
                 this.dispose();
             }else{
