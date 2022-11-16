@@ -1,5 +1,4 @@
 package juego2;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,9 +11,13 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/*
+ * Clase donde se realizara la creacion y implmentacion de la interfaz grafica por parte del juego "Gato"
+ */
 public class GUI_Gato extends JFrame {
-    private JPanel contentPane;
 
+	//Declaracion de variable para el desarrollo del juego 
+    private JPanel contentPane;
 	boolean banderaGanaX=true, banderaGanaO=true;
 	public static int ganadorX = 0,ganadorO = 0;
 	String resultado="X = "+ganadorX+"        "+"O = "+ganadorO;
@@ -34,7 +37,9 @@ public class GUI_Gato extends JFrame {
 	            {3,5,7},        
 	};
 
-	
+	/**
+	 * Metodo contructor de la clase donde se creara y implmentara todos los elementos graficos del juego 
+	 */
 	public GUI_Gato() {
 		setTitle("TicTacToe");
 		setResizable(false);
@@ -305,13 +310,19 @@ public class GUI_Gato extends JFrame {
 		contentPane.add(lblTurno);
 	}
 	
+	/**
+	 * metodo que recibe la casilla donde se presiono y despues de eso llamar al cambiar turno 
+	 * @param casillero 
+	 */
 	public void presionar (int casillero){
 		if (lbs[casillero-1].getText().equals("")){
 		lbs[casillero-1].setText(Turno);
 		cambiarTurno();}
 		ganador();
 	}
-	
+	/**
+	 * Metodo que realiza la accion de cmabiar de turno para que proceda el siguiente 
+	 */
 	public void cambiarTurno(){
 		if(banderaGanaO && banderaGanaX){
         	if(Turno.equals("X"))
@@ -321,9 +332,10 @@ public class GUI_Gato extends JFrame {
 		}
 	}
 
-	
+	/**
+	 * metodo que define si en el juego hubo un ganador 
+	 */
 	public void ganador(){
-		
 		for(int i=0; i<vs.length;i++){
 			if(lbs[vs[i][0]-1].getText().equals("X")&&
 					lbs[vs[i][1]-1].getText().equals("X")&&
@@ -351,9 +363,5 @@ public class GUI_Gato extends JFrame {
 				}
 		}
 		}
-	}
-
-	public void terminar(){
-		
 	}
 }

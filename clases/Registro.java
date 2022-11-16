@@ -1,12 +1,16 @@
 package clases;
 import java.time.LocalDateTime;
-
 import interfaces.iJuego;
 import interfaces.iJugador;
 import java.io.Serializable;
 
+/**
+ * Clase donde se trabaja el objeto Registro, contara con distintos metodos y atributos
+ * Implementa la clase Serializable para poder asi ser guardado en archivos 
+ * Atributos: horaInicio, horaFinal, puntaje, estado, jugador, juego
+ */
 public class Registro implements interfaces.iRegistro, Serializable{
-    
+    //Atributos
     private LocalDateTime horaInicio;
     private LocalDateTime horaFinal;
     private int puntaje;
@@ -14,12 +18,7 @@ public class Registro implements interfaces.iRegistro, Serializable{
     private iJugador jugador;
     public iJuego juego;
 
-    
-
-    public Registro(int puntaje){
-        this.puntaje=puntaje;
-    }
-
+    //Constructor
     public Registro(LocalDateTime horaInicio, LocalDateTime Horafinal, int puntaje, boolean estado, iJugador jugador, iJuego juego){
         this.horaInicio=horaInicio;
         this.horaFinal=Horafinal;
@@ -29,6 +28,7 @@ public class Registro implements interfaces.iRegistro, Serializable{
         this.juego=juego;
     }
 
+    //Metodos requeridos por la implmentacion de la interfaz
     @Override
     public LocalDateTime getInicio() {
         return this.horaInicio;
@@ -45,7 +45,6 @@ public class Registro implements interfaces.iRegistro, Serializable{
     public void setFinalizacion(LocalDateTime fechaHora) {
         this.horaFinal=fechaHora;    
     }
-
     @Override
     public int getPuntaje() {
         return this.puntaje;
@@ -67,6 +66,7 @@ public class Registro implements interfaces.iRegistro, Serializable{
         return juego;
     }
 
+    //metodos Propios
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
